@@ -15,7 +15,9 @@ function Chat({ chat, messages }) {
       <Head>
         <title>Chat with {getRecipientEmail(chat.users, user)}</title>
       </Head>
-      <Sidebar />
+      <SidebarContainer>
+        <Sidebar />
+      </SidebarContainer>
       <ChatContainer>
         <ChatScreen chat={chat} messages={messages} />
       </ChatContainer>
@@ -28,6 +30,7 @@ export default Chat;
 export async function getServerSideProps(context) {
   const ref = db.collection("chats").doc(context.query.id);
 
+  // Prep the Messages...
   const messagesRes = await ref
     .collection("messages")
     .orderBy("timestamp", "asc")
@@ -72,4 +75,10 @@ const ChatContainer = styled.div`
   }
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+`;
+
+const SidebarContainer = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
