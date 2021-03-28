@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { auth, db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
 import firebase from "firebase";
+import TimeAgo from "timeago-react";
 import { Avatar, IconButton } from "@material-ui/core";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
@@ -24,6 +25,11 @@ function ChatScreen({ chat, messages }) {
       .doc(router.query.id)
       .collection("messages")
       .orderBy("timestamp", "asc")
+  );
+  const [recipientSnapshot] = useCollection(
+    db
+      .collection("users")
+      .where("email", "==", getRecipientEmail(chat.users, user))
   );
 
   const showMessages = () => {
@@ -45,6 +51,13 @@ function ChatScreen({ chat, messages }) {
     }
   };
 
+  const ScrollToBottom = () => {
+    endOfMessagesRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   const sendMessage = (e) => {
     e.preventDefault();
 
@@ -63,19 +76,35 @@ function ChatScreen({ chat, messages }) {
     });
 
     setInput("");
+
+    ScrollToBottom();
   };
 
+  const recipient = recipientSnapshot?.docs?.[0]?.data();
   const recipientEmail = getRecipientEmail(chat.users, user);
-
   return (
     <Container>
       <Header>
-        <Avatar />
+        {recipient ? (
+          <Avatar src={recipient?.photoURL} />
+        ) : (
+          <Avatar>{recipientEmail[0]}</Avatar>
+        )}
 
         <HeaderInformation>
           <h3>{recipientEmail}</h3>
-
-          <p>Last active...</p>
+          {recipientSnapshot ? (
+            <p>
+              Last active:{` `}
+              {recipient?.lastSeen?.toDate() ? (
+                <TimeAgo datetime={recipient?.lastSeen?.toDate()} />
+              ) : (
+                "Unavailable"
+              )}
+            </p>
+          ) : (
+            <p>Loading Last active...</p>
+          )}
         </HeaderInformation>
         <HeaderIcons>
           <IconButton>
@@ -87,7 +116,10 @@ function ChatScreen({ chat, messages }) {
         </HeaderIcons>
       </Header>
 
-      <MessageContainer>{showMessages()}</MessageContainer>
+      <MessageContainer>
+        {showMessages()}
+        <EndOfMessage ref={endOfMessagesRef} />
+      </MessageContainer>
 
       <InputContainer>
         <InsertEmoticonIcon />
