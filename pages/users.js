@@ -5,23 +5,50 @@ import { auth, db } from "../firebase";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import * as EmailValidator from "email-validator";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 function Users() {
   const router = useRouter();
-
   const [users, setUsers] = useState([]);
   const [user] = useAuthState(auth);
 
+  const userChatsRef = db
+    .collection("chats")
+    .where("users", "array-contains", user.email);
+  const [chatsSnapshot, loading] = useCollection(userChatsRef);
+
   useEffect(() => {
-    db.collection("users").onSnapshot((snapshot) =>
-      setUsers(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      )
-    );
+    db.collection("users")
+      .orderBy("name")
+      .onSnapshot((snapshot) =>
+        setUsers(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
   }, []);
+
+  const createChat = (input) => {
+    if (!input) return;
+    if (
+      EmailValidator.validate(input) &&
+      !chatAlreadyExist(input) &&
+      input !== user.email
+    ) {
+      db.collection("chats").add({
+        users: [user.email, input],
+      });
+    }
+  };
+
+  const chatAlreadyExist = (recipientEmail) =>
+    !!chatsSnapshot?.docs.find(
+      (chat) =>
+        chat.data().users.find((user) => user === recipientEmail)?.length > 0
+    );
 
   return (
     <Container>
@@ -31,13 +58,29 @@ function Users() {
         </IconButton>
       </Header>
       {users.map(({ id, data: { name, email, photoURL } }) => (
-        <UsersList>
-          <UserAvatar src={photoURL} />
-          <UserDetails>
-            <UserEmail>{email}</UserEmail>
-            <UserName>{name}</UserName>
-          </UserDetails>
-        </UsersList>
+        <div
+          onClick={(e) => {
+            e.preventDefault();
+            createChat(email);
+          }}
+        >
+          {email === user.email ? (
+            <h1></h1>
+          ) : (
+            <UsersList>
+              <UserAvatar src={photoURL} />
+              <UserDetails
+                onClick={() => {
+                  router.push("/");
+                  alert("Chat created successfully");
+                }}
+              >
+                <UserEmail>{email}</UserEmail>
+                <UserName>{name}</UserName>
+              </UserDetails>
+            </UsersList>
+          )}
+        </div>
       ))}
     </Container>
   );

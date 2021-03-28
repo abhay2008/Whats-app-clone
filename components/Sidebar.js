@@ -2,7 +2,6 @@ import { Avatar, Button, IconButton } from "@material-ui/core";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
-import { useRouter } from "next/router";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import styled from "styled-components";
@@ -10,6 +9,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Chat from "./Chat";
 import { useCollection } from "react-firebase-hooks/firestore";
 import * as EmailValidator from "email-validator";
+import { useRouter } from "next/router";
 
 function Sidebar() {
   const router = useRouter();
@@ -17,7 +17,7 @@ function Sidebar() {
   const userChatsRef = db
     .collection("chats")
     .where("users", "array-contains", user.email);
-  const [chatsSnapshot, loading] = useCollection(userChatsRef);
+  const [chatsSnapshot] = useCollection(userChatsRef);
 
   const createChat = () => {
     const input = prompt(
