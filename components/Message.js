@@ -37,11 +37,13 @@ const MessageElement = styled.p`
 const Sender = styled(MessageElement)`
   margin-left: auto;
   background-color: #dcf8c6;
+  word-break: break-word;
 `;
 
 const Reciever = styled(MessageElement)`
   background-color: whitesmoke;
   text-align: left;
+  word-break: break-word;
 `;
 
 const Timestamp = styled.span`
