@@ -65,7 +65,7 @@ function Users() {
           }}
         >
           {email === user.email ? (
-            <h1></h1>
+            <div></div>
           ) : (
             <UsersList>
               <UserAvatar src={photoURL} />
@@ -90,7 +90,7 @@ export default Users;
 
 const Container = styled.div`
   flex: 0.45;
-  border-right: 1px solid whitesmoke;
+  border-right: 0.5px solid #262d31;
   height: 100vh;
   min-width: 300px;
   max-width: 400px;
@@ -112,16 +112,19 @@ const Header = styled.div`
   align-items: center;
   padding: 15px;
   height: 80px;
-  border-bottom: 1px solid whitesmoke;
-  background-color: #00bfa5;
+  border-bottom: 0.5px solid #262d31;
+  background-color: #323739;
 `;
 
 const UsersList = styled.div`
   display: flex;
   align-items: center;
   padding: 20px;
+  word-break: break-word;
+  background-color: #131c21;
+  color: white;
   :hover {
-    background-color: #e9eaeb;
+    background-color: #2d3134;
   }
   margin-left: 10px;
 `;

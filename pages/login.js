@@ -19,7 +19,11 @@ function login() {
           src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png"
           alt=""
         />
-        <Button variant="outlined" onClick={signIn}>
+        <Button
+          style={{ backgroundColor: "#131c21", color: "white" }}
+          variant="outlined"
+          onClick={signIn}
+        >
           Sign in with Google
         </Button>
       </LoginContainer>
@@ -32,8 +36,8 @@ export default login;
 const Container = styled.div`
   display: grid;
   place-items: center;
+  background-color: #131c21;
   height: 100vh;
-  background-color: whitesmoke;
 `;
 
 const LoginContainer = styled.div`
@@ -41,7 +45,7 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-color: #323739;
   border-radius: 5px;
   box-shadow: 0px 4px 14px -3px rgba(0, 0, 0, 0.75);
 `;

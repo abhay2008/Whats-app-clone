@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import DonutLargeRoundedIcon from "@material-ui/icons/DonutLargeRounded";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import Chat from "./Chat";
@@ -50,18 +51,23 @@ function Sidebar() {
 
         <IconsContainer>
           <IconButton onClick={() => router.push("/users")}>
-            <ChatIcon />
+            <DonutLargeRoundedIcon style={{ color: "#B1B3B5" }} />
+          </IconButton>
+          <IconButton onClick={() => router.push("/users")}>
+            <ChatIcon style={{ color: "#B1B3B5" }} />
           </IconButton>
           <IconButton>
-            <MoreVertIcon />
+            <MoreVertIcon style={{ color: "#B1B3B5" }} />
           </IconButton>
         </IconsContainer>
       </Header>
 
-      <Search>
-        <SearchIcon />
-        <SearchInput placeholder="Search in chats" type="text" />
-      </Search>
+      <SearchContainer>
+        <Search>
+          <SearchIcon style={{ color: "#B1B3B5" }} />
+          <SearchInput placeholder="Search in chats" type="text" />
+        </Search>
+      </SearchContainer>
 
       <SidebarButton onClick={createChat}>Start a new chat</SidebarButton>
 
@@ -77,7 +83,7 @@ export default Sidebar;
 
 const Container = styled.div`
   flex: 0.45;
-  border-right: 1px solid whitesmoke;
+  border-right: 0.5px solid #262d31;
   height: 100vh;
   min-width: 300px;
   max-width: 400px;
@@ -99,23 +105,39 @@ const UserAvatar = styled(Avatar)`
 const SidebarButton = styled(Button)`
   width: 100%;
   &&& {
-    border-top: 1px solid whitesmoke;
-    border-bottom: 1px solid whitesmoke;
+    border-top: 0.5px solid #262d31;
+    border-bottom: 0.5px solid #262d31;
+    background-color: #2a2f32;
+    color: white;
+    border-radius: 0px !important;
   }
+`;
+
+const SearchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #131c21;
+  padding: 10px;
+  border-bottom: 0.5px solid #262d31;
 `;
 
 const Search = styled.div`
   display: flex;
   align-items: center;
-  padding: 5px;
-  border-radius: 2px;
-  padding: 20px;
+  justify-content: center;
+  border-radius: 20px;
+  background-color: #32373a;
+  padding: 10px;
+  width: 340px;
 `;
 
 const SearchInput = styled.input`
   outline-width: 0;
   border: none;
   flex: 1;
+  margin-left: 10px;
+  background-color: transparent;
 `;
 
 const Header = styled.div`
@@ -128,7 +150,7 @@ const Header = styled.div`
   align-items: center;
   padding: 15px;
   height: 80px;
-  border-bottom: 1px solid whitesmoke;
+  background-color: #2a2f32;
 `;
 
 const IconsContainer = styled.div``;

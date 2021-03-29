@@ -8,9 +8,7 @@ import getRecipientEmail from "../utils/getRecipientEmail";
 import firebase from "firebase";
 import TimeAgo from "timeago-react";
 import { Avatar, IconButton } from "@material-ui/core";
-import AttachFileIcon from "@material-ui/icons/AttachFile";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import MicIcon from "@material-ui/icons/Mic";
 import Message from "./Message";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
@@ -112,14 +110,6 @@ function ChatScreen({ chat, messages }) {
             <p>Loading Last active...</p>
           )}
         </HeaderInformation>
-        <HeaderIcons>
-          <IconButton>
-            <AttachFileIcon />
-          </IconButton>
-          <IconButton>
-            <MoreVertIcon />
-          </IconButton>
-        </HeaderIcons>
       </Header>
 
       <MessageContainer>
@@ -128,7 +118,7 @@ function ChatScreen({ chat, messages }) {
       </MessageContainer>
 
       <InputContainer>
-        <InsertEmoticonIcon />
+        <InsertEmoticonIcon style={{ color: "#B1B3B5" }} />
         <Input
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -138,7 +128,7 @@ function ChatScreen({ chat, messages }) {
         <button hidden disabled={!input} type="submit" onClick={sendMessage}>
           Send Message
         </button>
-        <MicIcon />
+        <MicIcon style={{ color: "#B1B3B5" }} />
       </InputContainer>
     </Container>
   );
@@ -153,33 +143,34 @@ const Container = styled.div`
 
 const Header = styled.div`
   position: sticky;
-  background-color: white;
+  background-color: #2a2f32;
   z-index: 100;
   top: 0;
   display: flex;
   padding: 11px;
   height: 80px;
   align-items: center;
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: 0.5px solid #262d31;
 `;
 
 const HeaderInformation = styled.div`
   margin-left: 15px;
   flex: 1;
   > h3 {
-    margin-bottom: 3px;
+    margin-bottom: 2px;
+    color: white;
   }
   > p {
     font-size: 14px;
-    color: gray;
+    color: lightGray;
   }
 `;
 
-const HeaderIcons = styled.div``;
-
 const MessageContainer = styled.div`
   padding: 30px;
-  background-color: #e5ded8;
+  background: url(https://i.ibb.co/tY9LVfJ/whatsapp-background.png) no-repeat
+    center;
+  background-size: cover;
   min-height: 90vh;
 `;
 
@@ -189,7 +180,7 @@ const InputContainer = styled.form`
   padding: 10px;
   position: sticky;
   bottom: 0;
-  background-color: white;
+  background-color: #1e2428;
   z-index: 100;
 `;
 
@@ -198,7 +189,7 @@ const Input = styled.input`
   outline: 0;
   border: none;
   border-radius: 10px;
-  background-color: whitesmoke;
+  background-color: #33383b;
   padding: 20px;
   margin-left: 15px;
   margin-right: 15px;

@@ -41,8 +41,11 @@ const Container = styled.div`
   cursor: pointer;
   padding: 15px;
   word-break: break-word;
+  background-color: #131c21;
+  border-bottom: 0.5px solid #262d31;
+  color: white;
   :hover {
-    background-color: #e9eaeb;
+    background-color: #2d3134;
   }
 `;
 
