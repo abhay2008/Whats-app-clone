@@ -86,7 +86,7 @@ function ChatScreen({ chat, messages }) {
       <Header>
         <BackIcon>
           <IconButton onClick={() => router.push("/")}>
-            <ArrowBackIcon />
+            <ArrowBackIcon style={{ color: "#B1B3B5" }} />
           </IconButton>
         </BackIcon>
         {recipient ? (
@@ -193,6 +193,7 @@ const Input = styled.input`
   padding: 20px;
   margin-left: 15px;
   margin-right: 15px;
+  color: white;
 `;
 
 const EndOfMessage = styled.div`
