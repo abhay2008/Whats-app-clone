@@ -2,7 +2,6 @@ import { Avatar, Button, IconButton } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import * as EmailValidator from "email-validator";

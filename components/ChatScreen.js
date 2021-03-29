@@ -13,6 +13,7 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import MicIcon from "@material-ui/icons/Mic";
 import Message from "./Message";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 function ChatScreen({ chat, messages }) {
   const [user] = useAuthState(auth);
@@ -85,6 +86,11 @@ function ChatScreen({ chat, messages }) {
   return (
     <Container>
       <Header>
+        <BackIcon>
+          <IconButton onClick={() => router.push("/")}>
+            <ArrowBackIcon />
+          </IconButton>
+        </BackIcon>
         {recipient ? (
           <Avatar src={recipient?.photoURL} />
         ) : (
@@ -200,4 +206,9 @@ const Input = styled.input`
 
 const EndOfMessage = styled.div`
   margin-bottom: 50px;
+`;
+const BackIcon = styled.div`
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
