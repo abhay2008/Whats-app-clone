@@ -126,7 +126,6 @@ const UsersList = styled.div`
   :hover {
     background-color: #2d3134;
   }
-  margin-left: 10px;
 `;
 
 const UserDetails = styled.div`
