@@ -72,9 +72,11 @@ function Sidebar() {
       <SidebarButton onClick={createChat}>Start a new chat</SidebarButton>
 
       {/* Components */}
-      {chatsSnapshot?.docs.map((chat) => (
-        <Chat key={chat.id} id={chat.id} users={chat.data().users} />
-      ))}
+      <ChatContainer>
+        {chatsSnapshot?.docs.map((chat) => (
+          <Chat key={chat.id} id={chat.id} users={chat.data().users} />
+        ))}
+      </ChatContainer>
     </Container>
   );
 }
@@ -154,3 +156,8 @@ const Header = styled.div`
 `;
 
 const IconsContainer = styled.div``;
+
+const ChatContainer = styled.div`
+  background-color: #131c21;
+  min-height: 100vh;
+`;
