@@ -11,6 +11,7 @@ import NightsStayIcon from "@material-ui/icons/NightsStay";
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import Head from "next/head";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Users() {
   const router = useRouter();
@@ -58,7 +59,8 @@ function Users() {
   return (
     <div className="border-r-[1px] w-[30vw] border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
       <Head>
-        <title>Whatsapp clone</title>
+        <title>Let's chat</title>
+
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
