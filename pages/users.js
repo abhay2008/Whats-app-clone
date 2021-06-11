@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import * as EmailValidator from "email-validator";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -51,14 +50,18 @@ function Users() {
     );
 
   return (
-    <Container>
-      <Header>
-        <IconButton onClick={() => router.push("/")}>
+    <div className="border-r-[1px] border-gray-700 h-screen min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar">
+      <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-gray-800 border-b-[1px] border-gray-700">
+        <IconButton
+          className="focus:outline-none"
+          onClick={() => router.push("/")}
+        >
           <ArrowBackIcon style={{ color: "white" }} />
         </IconButton>
-      </Header>
-      {users.map(({ id, data: { name, email, photoURL } }) => (
+      </div>
+      {users.map(({ data: { name, email, photoURL } }) => (
         <div
+          className="cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             createChat(email);
@@ -67,82 +70,26 @@ function Users() {
           {email === user.email ? (
             <div></div>
           ) : (
-            <UsersList>
-              <UserAvatar src={photoURL} />
-              <UserDetails
+            <div className="flex items-center p-5 break-words bg-gray-800 text-white hover:bg-gray-900">
+              <Avatar
+                className="cursor-pointer hover:opacity-80"
+                src={photoURL}
+              />
+              <div
+                className="flex cursor-pointer break-words flex-col ml-3"
                 onClick={() => {
                   router.push("/");
                   alert("Chat created successfully");
                 }}
               >
-                <UserEmail>{email}</UserEmail>
-                <UserName>{name}</UserName>
-              </UserDetails>
-            </UsersList>
+                <p>{name}</p>
+              </div>
+            </div>
           )}
         </div>
       ))}
-    </Container>
+    </div>
   );
 }
 
 export default Users;
-
-const Container = styled.div`
-  flex: 0.45;
-  border-right: 0.5px solid #262d31;
-  height: 100vh;
-  min-width: 300px;
-  max-width: 400px;
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-`;
-
-const Header = styled.div`
-  display: flex;
-  position: sticky;
-  top: 0;
-  background-color: white;
-  z-index: 1;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  height: 80px;
-  border-bottom: 0.5px solid #262d31;
-  background-color: #323739;
-`;
-
-const UsersList = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  word-break: break-word;
-  background-color: #131c21;
-  color: white;
-  :hover {
-    background-color: #2d3134;
-  }
-`;
-
-const UserDetails = styled.div`
-  display: flex;
-  cursor: pointer;
-  word-break: break-word;
-  flex-direction: column;
-  margin-left: 10px;
-`;
-
-const UserAvatar = styled(Avatar)`
-  align-items: flex-start;
-  cursor: pointer;
-  :hover {
-    opacity: 0.8;
-  }
-`;
-
-const UserEmail = styled.div``;
-const UserName = styled.div``;

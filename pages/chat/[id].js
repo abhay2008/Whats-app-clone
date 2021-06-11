@@ -1,6 +1,5 @@
 import React from "react";
 import { auth, db } from "../../firebase";
-import styled from "styled-components";
 import Sidebar from "../../components/Sidebar";
 import ChatScreen from "../../components/ChatScreen";
 import Head from "next/head";
@@ -11,17 +10,17 @@ function Chat({ chat, messages }) {
   const [user] = useAuthState(auth);
 
   return (
-    <Container>
+    <div className="flex shadow-md">
       <Head>
         <title>Chat with {getRecipientEmail(chat.users, user)}</title>
       </Head>
-      <SidebarContainer>
+      <div className="md:flex hidden">
         <Sidebar />
-      </SidebarContainer>
-      <ChatContainer>
+      </div>
+      <div className="overflow-scroll h-screen hidescrollbar">
         <ChatScreen chat={chat} messages={messages} />
-      </ChatContainer>
-    </Container>
+      </div>
+    </div>
   );
 }
 
@@ -60,25 +59,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-const Container = styled.div`
-  display: flex;
-  box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.75);
-`;
-
-const ChatContainer = styled.div`
-  flex: 1;
-  overflow: scroll;
-  height: 100vh;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-`;
-
-const SidebarContainer = styled.div`
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;

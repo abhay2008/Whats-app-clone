@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import styled from "styled-components";
 import { auth, db } from "../firebase";
 import getRecipientEmail from "../utils/getRecipientEmail";
 
@@ -22,34 +21,18 @@ function Chat({ id, users }) {
   const recipientEmail = getRecipientEmail(users, user);
 
   return (
-    <Container onClick={enterChat}>
+    <div
+      className="flex items-center cursor-pointer p-4 break-words bg-gray-800 border-b-[1px] border-gray-700 hover:bg-gray-900 text-white"
+      onClick={enterChat}
+    >
       {recipient ? (
-        <UserAvatar src={recipient?.photoURL} />
+        <Avatar className="m-1 mr-4 z-0" src={recipient?.photoURL} />
       ) : (
-        <UserAvatar>{recipientEmail[0]}</UserAvatar>
+        <Avatar className="m-1 mr-4 z-0">{recipientEmail[0]}</Avatar>
       )}
       <p>{recipientEmail}</p>
-    </Container>
+    </div>
   );
 }
 
 export default Chat;
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  padding: 15px;
-  word-break: break-word;
-  background-color: #131c21;
-  border-bottom: 0.5px solid #262d31;
-  color: white;
-  :hover {
-    background-color: #2d3134;
-  }
-`;
-
-const UserAvatar = styled(Avatar)`
-  margin: 5px;
-  margin-right: 15px;
-`;
