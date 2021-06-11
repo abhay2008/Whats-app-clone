@@ -19,12 +19,12 @@ function login() {
           src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png"
           alt=""
         />
-        <Button
-          className="!dark:bg-gray-900 bg-indigo-100 !dark:text-white focus:outline-none"
+        <button
+          className="w-full focus:outline-none py-2  rounded-lg dark:!bg-bgdarkSecondary bg-indigo-400 dark:!text-white"
           onClick={signIn}
         >
           Sign in with Google
-        </Button>
+        </button>
       </div>
     </div>
   );
