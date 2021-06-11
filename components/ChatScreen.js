@@ -81,16 +81,14 @@ function ChatScreen({ chat, messages }) {
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   const recipientEmail = getRecipientEmail(chat.users, user);
   return (
-    <div className="flex flex-col min-w-[70vw]">
-      <div className="sticky bg-gray-800 z-50 top-0 flex p-4 h-20 items-center border-b-[1px] border-gray-700">
-        <ArrowBackIcon className="md:!hidden text-gray-50">
-          <IconButton
-            className="focus:outline-none"
-            onClick={() => router.push("/")}
-          >
-            <ArrowBackIcon className="md:!hidden text-gray-50" />
-          </IconButton>
-        </ArrowBackIcon>
+    <div className="flex flex-col min-w-[60vw] h-[90vh] m-10 rounded-xl dark:bg-bgdarkSecondary bg-indigo-300">
+      <div className="sticky rounded-t-xl dark:bg-bgdarkSecondary bg-indigo-300 z-50 top-0 flex p-4 h-20 items-center border-b-[1px] border-gray-700">
+        <IconButton
+          className="focus:outline-none cursor-pointer"
+          onClick={() => router.push("/")}
+        >
+          <ArrowBackIcon className="md:!hidden text-gray-50" />
+        </IconButton>
         {recipient ? (
           <Avatar src={recipient?.photoURL} />
         ) : (
@@ -98,7 +96,7 @@ function ChatScreen({ chat, messages }) {
         )}
 
         <div className="ml-4 flex-1">
-          <h3 className="mb-1 text-white">{recipientEmail}</h3>
+          <h3 className="mb-1 dark:text-white">{recipientEmail}</h3>
           {recipientSnapshot ? (
             <p className="text-gray-500 text-sm">
               Last active:{` `}
@@ -109,20 +107,20 @@ function ChatScreen({ chat, messages }) {
               )}
             </p>
           ) : (
-            <p className="mb-1 text-white">Loading Last active...</p>
+            <p className="mb-1 dark:text-white">Loading Last active...</p>
           )}
         </div>
       </div>
 
-      <div className="p-8 min-h-[90vh]">
+      <div className="p-8 h-[66vh] overflow-scroll hidescrollbar">
         {showMessages()}
-        <div className="mb-10" ref={endOfMessagesRef} />
+        <div className="" ref={endOfMessagesRef} />
       </div>
 
-      <form className="flex items-center p-3 sticky bottom-0 bg-gray-800 z-50">
-        <InsertEmoticonIcon style={{ color: "#B1B3B5" }} />
+      <form className="flex items-center p-3 sticky rounded-b-xl border-t-[1px] border-gray-700 dark:bg-bgdarkSecondary bg-indigo-300 z-50">
+        <InsertEmoticonIcon className="text-black dark:text-gray-100" />
         <input
-          className="border-none outline-none rounded-lg backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 p-5 mx-4 w-full text-white"
+          className="border-none outline-none rounded-lg backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 p-5 mx-4 w-full dark:text-white"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           type="text"
@@ -131,7 +129,7 @@ function ChatScreen({ chat, messages }) {
         <button hidden disabled={!input} type="submit" onClick={sendMessage}>
           Send Message
         </button>
-        <MicIcon style={{ color: "#B1B3B5" }} />
+        <MicIcon className="text-black dark:text-gray-100" />
       </form>
     </div>
   );

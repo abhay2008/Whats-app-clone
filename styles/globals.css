@@ -4,7 +4,7 @@
 
 @layer components {
   body {
-    @apply bg-gray-900;
+    @apply dark:bg-gray-900 bg-indigo-100;
   }
 }
 
@@ -13,10 +13,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-.hidescrollbar::-webkit-scrollbar {
+.hidescrollbar::-webkit-scrollbar,
+body::-webkit-scrollbar {
   display: none;
 }
-.hidescrollbar {
+.hidescrollbar,
+body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

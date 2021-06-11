@@ -10,6 +10,11 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import * as EmailValidator from "email-validator";
 import { useRouter } from "next/router";
 import { PersonOutline } from "@material-ui/icons";
+import useDarkMode from "./useDarkMode";
+import NightsStayIcon from "@material-ui/icons/NightsStay";
+import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Sidebar() {
   const router = useRouter();
@@ -18,6 +23,7 @@ function Sidebar() {
     .collection("chats")
     .where("users", "array-contains", user.email);
   const [chatsSnapshot] = useCollection(userChatsRef);
+  const [colorTheme, setTheme] = useDarkMode();
 
   const createChat = () => {
     const input = prompt(
@@ -34,6 +40,7 @@ function Sidebar() {
       db.collection("chats").add({
         users: [user.email, input],
       });
+      toast.success("Chat created successfully");
     }
   };
 
@@ -44,8 +51,8 @@ function Sidebar() {
     );
 
   return (
-    <div className="border-r-[1px] w-[380vw] border-gray-700 h-screen min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar">
-      <div className="flex sticky top-0 justify-between items-center p-4 h-20 bg-gray-800 border-b-[1px] border-gray-700 z-10">
+    <div className="border-r-[1px] w-[30vw] border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+      <div className="flex sticky top-0 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-gray-700 z-10">
         <Avatar
           className="cursor-pointer hover:opacity-80"
           onClick={() => auth.signOut()}
@@ -54,37 +61,50 @@ function Sidebar() {
 
         <div>
           <IconButton className="focus:outline-none">
-            <DonutLargeRoundedIcon className="!text-gray-50" />
+            <DonutLargeRoundedIcon className="text-black   dark:text-gray-50" />
           </IconButton>
           <IconButton
             className="focus:outline-none"
             onClick={() => router.push("/users")}
           >
-            <PersonOutline className="!text-gray-50" />
+            <PersonOutline className="text-black dark:text-gray-50" />
           </IconButton>
           <IconButton className="focus:outline-none">
-            <MoreVertIcon className="!text-gray-50" />
+            {colorTheme === "light" ? (
+              <EmojiObjectsIcon
+                onClick={() => setTheme("light")}
+                className="h-9  dark:text-gray-200 mr-2 cursor-pointer"
+              />
+            ) : (
+              <NightsStayIcon
+                onClick={() => setTheme("dark")}
+                className="h-9 text-black  mr-2 cursor-pointer"
+              />
+            )}
           </IconButton>
         </div>
       </div>
 
-      <div className="flex items-center justify-center bg-gray-800 p-3 border-b-[1px] border-gray-700">
-        <div className="flex items-center justify-center backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 rounded-3xl p-3 w-80">
-          <SearchIcon className="!text-gray-50" />
+      <div className="flex items-center justify-center dark:bg-bgdarkSecondary bg-indigo-300 p-3 border-b-[1px] border-gray-700">
+        <div className="flex items-center justify-center backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 text-black rounded-xl p-3 w-80">
+          <SearchIcon className="text-black dark:text-gray-50" />
           <input
-            className="outline-none border-none text-white flex-1 ml-3 bg-transparent"
+            className="outline-none border-none text-black dark:text-white flex-1 ml-3 bg-transparent"
             placeholder="Search in chats"
             type="text"
           />
         </div>
       </div>
 
-      <Button className="w-full !bg-gray-800 !text-white" onClick={createChat}>
+      <button
+        className="w-full focus:outline-none border-b-[1px] py-2 border-gray-700 hover:bg-indigo-400 dark:!bg-bgdarkSecondary bg-indigo-300 dark:!text-white"
+        onClick={createChat}
+      >
         Start a new chat
-      </Button>
+      </button>
 
       {/* Components */}
-      <div className="bg-gray-800 border-t-[1px] !border-gray-700  min-h-screen">
+      <div className="dark:bg-bgdarkSecondary bg-indigo-300  min-h-screen">
         {chatsSnapshot?.docs.map((chat) => (
           <Chat key={chat.id} id={chat.id} users={chat.data().users} />
         ))}

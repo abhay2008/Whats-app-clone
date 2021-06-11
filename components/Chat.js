@@ -22,7 +22,7 @@ function Chat({ id, users }) {
 
   return (
     <div
-      className="flex items-center cursor-pointer p-4 break-words bg-gray-800 border-b-[1px] border-gray-700 hover:bg-gray-900 text-white"
+      className="flex items-center cursor-pointer p-4 break-words dark:bg-bgdarkSecondary bg-indigo-300 hover:bg-indigo-400 border-b-[1px] border-gray-700 dark:hover:bg-gray-900 dark:text-white"
       onClick={enterChat}
     >
       {recipient ? (
@@ -30,7 +30,7 @@ function Chat({ id, users }) {
       ) : (
         <Avatar className="m-1 mr-4 z-0">{recipientEmail[0]}</Avatar>
       )}
-      <p>{recipientEmail}</p>
+      <p>{recipientEmail.slice(0, 25)}</p>
     </div>
   );
 }

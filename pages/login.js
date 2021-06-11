@@ -9,18 +9,18 @@ function login() {
   };
 
   return (
-    <div className="grid place-items-center bg-gray-900 h-screen">
+    <div className="grid place-items-center dark:bg-gray-900 bg-indigo-100 h-screen">
       <Head>
         <title>Login</title>
       </Head>
-      <div className="flex flex-col items-center bg-gray-800 p-28 rounded-md shadow-md">
+      <div className="flex flex-col items-center dark:bg-bgdarkSecondary bg-indigo-300 p-28 rounded-md shadow-md">
         <img
           className="h-52 w-52 mb-14"
           src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png"
           alt=""
         />
         <Button
-          className="!bg-gray-900 !text-white focus:outline-none"
+          className="!dark:bg-gray-900 bg-indigo-100 !dark:text-white focus:outline-none"
           onClick={signIn}
         >
           Sign in with Google

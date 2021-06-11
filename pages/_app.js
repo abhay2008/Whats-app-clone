@@ -5,6 +5,7 @@ import Login from "./login";
 import firebase from "firebase";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
   const [user, loading] = useAuthState(auth);
@@ -26,7 +27,13 @@ function MyApp({ Component, pageProps }) {
   if (loading) return <Loading />;
   if (!user) return <Login />;
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <ToastContainer />
+
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
