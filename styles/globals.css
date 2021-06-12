@@ -6,6 +6,12 @@
   body {
     @apply dark:bg-gray-900 bg-indigo-100;
   }
+  .animation-delay-2000 {
+    animation-delay: 2.5s !important;
+  }
+  .animation-delay-4000 {
+    animation-delay: 5s !important;
+  }
 }
 
 body {

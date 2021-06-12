@@ -10,7 +10,7 @@ import useDarkMode from "../components/useDarkMode";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import Head from "next/head";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Users() {

@@ -2,7 +2,6 @@ import { Avatar, Button, IconButton } from "@material-ui/core";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import DonutLargeRoundedIcon from "@material-ui/icons/DonutLargeRounded";
 import SearchIcon from "@material-ui/icons/Search";
 import Chat from "./Chat";
@@ -55,7 +54,7 @@ function Sidebar() {
       <div className="flex sticky top-0 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-gray-700 z-10">
         <Avatar
           className="cursor-pointer hover:opacity-80"
-          onClick={() => auth.signOut()}
+          onClick={() => router.push("/details")}
           src={user.photoURL}
         />
 
