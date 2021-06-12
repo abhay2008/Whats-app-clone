@@ -2,6 +2,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import CreateIcon from "@material-ui/icons/Create";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 function details() {
   const router = useRouter();
@@ -13,6 +14,10 @@ function details() {
 
   return (
     <div className="bg-indigo-100 flex h-screen items-center justify-center px-16">
+      <Head>
+        <title>Your details</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="relative w-full max-w-lg">
         <div className="absolute top-0 -left-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-lg opacity-90 animate-blob"></div>
         <div className="absolute top-0 -right-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-lg opacity-90 animate-blob animation-delay-2000"></div>
