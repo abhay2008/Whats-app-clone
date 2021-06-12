@@ -5,8 +5,7 @@ function Loading() {
     <center className="grid place-items-center h-screen">
       <div>
         <img
-          src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c543.png"
-          alt=""
+          src="https://cdn.icon-icons.com/icons2/1875/PNG/512/chat_120238.png"
           className="h-52 mb-3"
         />
         <Circle color="#3CBC28" size={60} />
