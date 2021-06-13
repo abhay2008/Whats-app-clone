@@ -6,8 +6,9 @@ import firebase from "firebase";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
 import { ToastContainer } from "react-toastify";
+import { motion } from "framer-motion";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
@@ -28,10 +29,24 @@ function MyApp({ Component, pageProps }) {
   if (!user) return <Login />;
 
   return (
-    <>
+    <motion.div
+      key={router.route}
+      initial="initial"
+      animate="animate"
+      variants={{
+        initial: {
+          scale: 0.8,
+          opacity: 0.1,
+        },
+        animate: {
+          scale: 1,
+          opacity: 1,
+        },
+      }}
+    >
       <ToastContainer />
       <Component {...pageProps} />
-    </>
+    </motion.div>
   );
 }
 

@@ -3,6 +3,7 @@ import { auth } from "../firebase";
 import CreateIcon from "@material-ui/icons/Create";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { motion } from "framer-motion";
 
 function details() {
   const router = useRouter();
@@ -23,12 +24,28 @@ function details() {
         <div className="absolute top-0 -right-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-lg opacity-90 animate-blob animation-delay-2000"></div>
         <div className="absolute left-20 -bottom-12 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-lg opacity-90 animate-blob animation-delay-4000"></div>
         <div>
-          <img
-            className="w-60 ml-auto mr-auto h-60 relative flex flex-col m-5 rounded-full"
+          <motion.img
+            whileHover={{
+              scale: [1, 1.15, 1.1],
+              zIndex: 1,
+              transition: {
+                duration: 1,
+              },
+            }}
+            className="w-60 ml-auto mr-auto h-60 relative flex flex-col m-5 rounded-full cursor-pointer"
             src={user.photoURL}
             alt={user.displayName}
           />
-          <div className="transform hover:scale-110 duration-300 delay-75 backdrop-filter backdrop-blur-2xl bg-white bg-opacity-25 shadow-xl rounded-xl relative  flex flex-col m-5 p-10  items-center cursor-pointer">
+          <motion.div
+            whileHover={{
+              scale: [1, 1.15, 1.1],
+              zIndex: 1,
+              transition: {
+                duration: 1,
+              },
+            }}
+            className="backdrop-filter backdrop-blur-2xl bg-white bg-opacity-25 shadow-xl rounded-xl relative  flex flex-col m-5 p-10  items-center cursor-pointer"
+          >
             <a
               className="flex items-center justify-center !text-lg"
               target="blank"
@@ -37,8 +54,17 @@ function details() {
               Your name <CreateIcon className="ml-2" />
             </a>
             <h1>{user.displayName}</h1>
-          </div>
-          <div className="transform hover:scale-110 duration-300 delay-75 backdrop-filter backdrop-blur-2xl bg-white bg-opacity-25 shadow-xl rounded-xl relative flex flex-col m-5 p-10 items-center cursor-pointer">
+          </motion.div>
+          <motion.div
+            whileHover={{
+              scale: [1, 1.15, 1.1],
+              zIndex: 1,
+              transition: {
+                duration: 1,
+              },
+            }}
+            className="backdrop-filter backdrop-blur-2xl bg-white bg-opacity-25 shadow-xl rounded-xl relative  flex flex-col m-5 p-10  items-center cursor-pointer"
+          >
             <a
               target="blank"
               className="flex items-center justify-center !text-lg"
@@ -48,12 +74,21 @@ function details() {
               <CreateIcon className="ml-2" />
             </a>
             <h1 className="text-lg">{user.email}</h1>
-          </div>
-          <div className="transform hover:scale-110 duration-300 delay-75 backdrop-filter backdrop-blur-2xl bg-white bg-opacity-25 shadow-xl rounded-xl relative flex flex-col m-5 p-10 items-center cursor-pointer">
+          </motion.div>
+          <motion.div
+            whileHover={{
+              scale: [1, 1.15, 1.1],
+              zIndex: 1,
+              transition: {
+                duration: 1,
+              },
+            }}
+            className="backdrop-filter backdrop-blur-2xl bg-white bg-opacity-25 shadow-xl rounded-xl relative  flex flex-col m-5 p-10  items-center cursor-pointer"
+          >
             <button onClick={signOut} className="focus:outline-none">
               Sign out
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
