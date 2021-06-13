@@ -50,8 +50,8 @@ function Sidebar() {
     );
 
   return (
-    <div className="border-r-[1px] w-[30vw] border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
-      <div className="flex sticky top-0 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-gray-700 z-10">
+    <div className="border-r-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+      <div className="flex sticky top-0 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-indigo-500 dark:border-gray-700 z-10">
         <Avatar
           className="cursor-pointer hover:opacity-80"
           onClick={() => router.push("/details")}
@@ -84,7 +84,7 @@ function Sidebar() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center dark:bg-bgdarkSecondary bg-indigo-300 p-3 border-b-[1px] border-gray-700">
+      <div className="flex items-center justify-center dark:bg-bgdarkSecondary bg-indigo-300 p-3 border-b-[1px] border-indigo-500 dark:border-gray-700">
         <div className="flex items-center justify-center backdrop-filter backdrop-blur-2xl bg-white bg-opacity-10 text-black rounded-xl p-3 w-80">
           <SearchIcon className="text-black dark:text-gray-50" />
           <input
@@ -96,7 +96,7 @@ function Sidebar() {
       </div>
 
       <button
-        className="w-full focus:outline-none border-b-[1px] py-2 border-gray-700 hover:bg-indigo-400 dark:!bg-bgdarkSecondary bg-indigo-300 dark:!text-white"
+        className="w-full focus:outline-none border-b-[1px] py-2 border-indigo-500 dark:border-gray-700 hover:bg-indigo-400 dark:!bg-bgdarkSecondary bg-indigo-300 dark:!text-white"
         onClick={createChat}
       >
         Start a new chat

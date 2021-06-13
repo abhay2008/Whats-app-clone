@@ -57,14 +57,15 @@ function Users() {
     );
 
   return (
-    <div className="border-r-[1px] w-[30vw] border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
+    <div className="border-r-[1px] w-[30vw] border-indigo-500 dark:border-gray-700 h-[90vh] m-10 min-w-[300px] max-w-[400px] overflow-y-scroll hidescrollbar rounded-xl">
       <Head>
         <title>Let's chat</title>
+        <meta name="description" content="Let's start chatting" />
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex sticky top-0 z-50 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-gray-700">
+      <div className="flex sticky top-0 z-50 justify-between items-center p-4 h-20 dark:bg-bgdarkSecondary bg-indigo-300 border-b-[1px] border-indigo-500 dark:border-gray-700">
         <IconButton
           className="focus:outline-none"
           onClick={() => router.push("/")}
